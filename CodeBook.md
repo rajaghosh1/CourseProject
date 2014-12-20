@@ -6,6 +6,7 @@ Input
 ======
 
 The input is the UCI HAR Dataset, with the following directory structure
+
 	+ test/ : directory containing test data
 		* subject_test.txt : the subject ids for the test
 		* y_test.txt : the activity ids for the test
@@ -43,28 +44,32 @@ following columns :
 Steps performed in converting from raw data
 ============================================
 
-A. Filter the mean and std columns for the train data (train/X_train.txt) as follow :
-	1. Use the features names (features.txt) as the column names for the data
-	2. Create a data frame containing only the columns having the string "mean" and "std" in
-	the names
-
-B. Convert the activity ids for the training (train/y_train.txt) into corresponding activity names
-   (activity_labels.txt) with a column name "Activity"
-
-C. Set the column name of the subject train data (train/subject_train.txt) as "SubjectID". 
-
-D. Column bind the data frames from C,B,A together. This gives the merged dataset for training
-
-E. Repeat steps A-D for the test data.
-
-F. Row bind the 2 data frames created in steps D and E. This gives the merged dataset for the all the
-   data. At this point the data frame has the following columns
-	1. SubjectID : rows contain ids (1-30) of subject
-	2. Activity : rows contain activity labels (WALKING, SITTING etc)
-	3. 79 columns named for the observation (e.g. fBodyAcc-mean()-X) : rows contain the values
-
-G. Generate the tidy data set from the data table in F as follow
-	1. Use gather (in tidyr) to collapse into 4 columns - SubjectID, Activity, ValueType, Value
-	2. convert the data frame into a data table using tbl_dt (from data.table)
-	3. group the data table by {SubjectID, Activity, ValueType}
-	4. summarise the grouped table with an aggegation column called MeanValue = mean(Value)
+	A. Filter the mean and std columns for the training data (train/X_train.txt)
+	   as follow :
+		1. Use the features names (features.txt) as the column names for the
+		   data
+		2. Create a data frame containing only the columns having the string
+		   "mean" or "std" in the names
+	B. Convert the activity ids for the training (train/y_train.txt) into
+	   corresponding activity names (activity_labels.txt) with a column name
+	   "Activity"
+	C. Set the column name of the subject training data (train/subject_train.txt)
+	   as "SubjectID". 
+	D. Column bind the data frames from C,B,A together. This gives the merged
+	   dataset for training
+	E. Repeat steps A-D for the test data.
+	F. Row bind the 2 data frames created in steps D and E. This gives the merged
+	   dataset for the all the data. At this point the data frame has the following
+	   columns
+		1. SubjectID : rows contain ids (1-30) of subject
+		2. Activity : rows contain activity labels (WALKING, SITTING etc)
+		3. 79 columns named for the observation (e.g. fBodyAcc-mean()-X) 
+			: rows contain the values
+	G. Generate the tidy data set from the data table in F as follow
+		1. Use gather (in tidyr) to collapse into 4 columns - SubjectID,
+		   Activity, ValueType, Value
+		2. convert the data frame into a data table using tbl_dt
+		   (from data.table)
+		3. group the data table by {SubjectID, Activity, ValueType}
+		4. summarise the grouped table with an aggegation column called
+		   MeanValue = mean(Value)
