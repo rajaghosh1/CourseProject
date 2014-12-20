@@ -1,15 +1,30 @@
 =================================================
-README file describing the run_analysis.R script
-functionality
+CodeBook for tidy data
 =================================================
 
-Overview
+Input
+======
+
+The input is the UCI HAR Dataset, with the following directory structure
+	+ test/ : directory containing test data
+		* subject_test.txt : the subject ids for the test
+		* y_test.txt : the activity ids for the test
+		* X_test.txt : the observations for test
+	+ train/ : directory containing training data
+		* subject_train.txt : the subject ids for the training
+		* y_train.txt : the activity ids for the training
+		* X_train.txt : the observations for training
+	+ train/ : directory containing training data
+	+ activity_labels.txt : file containing activity labels
+	+ features.txt : file containing label for each observation type
+	+ features_info.txt : description of the input data
+
+Output
 =========
 
-The run_analysis.R script takes as parameter a directory name where the HAR dataset
-resides. If no parameter is given it defaults to the current directory.
+The data frame output by the run_analysis() (or get_tidy_data()) has the
+following columns :
 
-It outputs a data frame with the following columns
 	+ SubjectID : the id of the subject (1-30)
 	+ Activity : the activity name, one of:
 		* WALKING
