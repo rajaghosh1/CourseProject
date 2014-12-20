@@ -41,6 +41,28 @@ following columns :
 	+ MeanValue : the average of the corresponding ValueType for the {SubjectID, Activity}
 		combination
 
+Script Requirements 
+===================
+
+The script requires the following packages to be installed
+
+	+ dplyr
+	+ tidyr
+	+ data.table
+
+Script Usage
+=============
+
+	+ run_analysis(dataDir = ".", outputFile = "TidyData.txt")
+		* dataDir is the directory containing the
+		  UCI HAR Dataset (directory containing test/ and 
+		  train/ subdirectories)
+		* outputFile is the file name to write to
+	+ This will process the datasets and create a tidy data file
+	  to outputFile
+	+ To get the tidy_data witin R (without dumping to the file), call
+	  get_tidy_data(dataDir = ".")
+
 Steps performed in converting from raw data
 ============================================
 

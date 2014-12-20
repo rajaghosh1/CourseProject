@@ -111,8 +111,8 @@ get_tidy_data <- function(dataDir = ".") {
   summarise(grouped_gathered_tbl, MeanValue = mean(Value))
 }
 
-run_analysis <- function(dataDir = ".") {
+run_analysis <- function(dataDir = ".", outputFile = "TidyData.txt") {
   tidy_data <- get_tidy_data(dataDir)
-  message("writing tidy data to TidyData,txt...")
-  write.table(tidy_data, "TidyData.txt", row.names = FALSE)
+  message("writing tidy data to ", outputFile)
+  write.table(tidy_data, outputFile, row.names = FALSE)
 }
